@@ -1,0 +1,21 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# All Vagrant configuration is done below. The "2" in Vagrant.configure
+# configures the configuration version (we support older styles for
+# backwards compatibility). Please don't change it unless you know what
+# you're doing.
+Vagrant.configure("2") do |config|
+
+  # RT Knowledge Management
+  config.vm.define "rt" do |rt|
+    rt.vm.box = "cyberxml/c7vb52"
+    rt.vm.hostname = "rt.example.com"
+    rt.vm.network "private_network", ip: "10.10.18.11", gateway: "10.10.18.2", virtualbox__intnet: true
+    rt.vm.network "forwarded_port", guest: 80, host:8888
+    rt.vm.network "forwarded_port", guest: 8080, host:8080
+    rt.vm.network "forwarded_port", guest: 9000, host:9000
+    rt.vm.synced_folder ".", "/vagrant", type: "virtualbox"
+  end
+
+end
