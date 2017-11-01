@@ -1,3 +1,7 @@
+echo "# ===================================="
+echo "# install RT Extension: NGINX"
+echo "# ===================================="
+
 systemctl stop nginx
 cd /opt
 mkdir gits
@@ -8,17 +12,10 @@ cd rt-extension-nginx/
 perl Makefile.PL 
 make
 make install
-cd /opt/rt4/local/plugins/
-ls
-cd RT-Extension-Nginx/
-ls
-./sbin/rt-generate-nginx-conf 
-./sbin/rt-nginx-control start
-./sbin/rt-nginx-control start
-cpan FCGI::ProcManager
-./sbin/rt-nginx-control start
+cd /opt/rt4/local/plugins/RT-Extension-Nginx/
 ./sbin/rt-nginx-control stop
 ./sbin/rt-nginx-control start
-netstat -plant | grep LIST
-curl http://localhost
+curl http://localhost:8000
+
+echo RT is now running on port 8000
 

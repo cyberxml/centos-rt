@@ -1,6 +1,14 @@
-http://www.itzgeek.com/how-tos/linux/centos-how-tos/nginx-php-fpm-mariadb-on-centos-7-rhel-7.html
+echo "# ===================================="
+echo "# NGINX"
+echo "# ===================================="
+# http://www.itzgeek.com/how-tos/linux/centos-how-tos/nginx-php-fpm-mariadb-on-centos-7-rhel-7.html
+yum -y install nginx spawn-fcgi
+cp /vagrant/conf/rt/nginx.conf /etc/nginx/nginx.conf
 
-yum -y install spawn-fcgi
+# probably not needed
+# firewall not enabled by default
+#firewall-cmd --permanent --zone=public --add-service=http
+#firewall-cmd --reload 
 
-nginx config
-https://docs.bestpractical.com/rt/4.4.2/web_deployment.html#mod_fastcgi
+# systemctl disable nginx
+# systemctl stop nginx
